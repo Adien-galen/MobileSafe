@@ -1,12 +1,12 @@
 package com.example.mobliesafe.activity;
 
-import com.example.mobliesafe.R;
-
-import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
+
+import com.example.mobliesafe.R;
 
 /**
  *  第4个设置向导页
@@ -14,7 +14,8 @@ import android.view.View;
  *
  */
 public class Setup4Activity extends BaseSetupActivity {
-	private SharedPreferences mPref;
+	
+	private CheckBox cbProtect;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -22,8 +23,35 @@ public class Setup4Activity extends BaseSetupActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_setup4);
 		
-		mPref = getSharedPreferences("config", MODE_PRIVATE);
+		cbProtect = (CheckBox) findViewById(R.id.cb_protect);
+		
+		boolean protect = mpref.getBoolean("protect",false);
+		
+		// 根据sp保存的状态,更新checkbox
+		if(protect){
+			cbProtect.setText("防盗保护已经开启");
+			cbProtect.setChecked(true);
+		}else{
+			cbProtect.setText("防盗保护没有开启");
+			cbProtect.setChecked(false)	;
+		}
+		// 当checkbox发生变化时,回调此方法
+		cbProtect.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				if(isChecked){
+					cbProtect.setText("盗保护已经开启");
+					mpref.edit().putBoolean("protect", true).commit();
+				}else{
+					cbProtect.setText("防盗保护没有开启");
+					mpref.edit().putBoolean("protect", false).commit();
+				}
+			}
+		});
 	}
+	
+	
 	
 	@Override
 	public void showNextPage() {
@@ -33,7 +61,7 @@ public class Setup4Activity extends BaseSetupActivity {
 		//两个界面切换的动画
 		overridePendingTransition(R.anim.tran_in, R.anim.tran_out);//进入动画和退出动画
 		
-		mPref.edit().putBoolean("configed", true).commit();// 更新sp,表示已经展示过设置向导了,下次进来就不展示啦
+		mpref.edit().putBoolean("configed", true).commit();// 更新sp,表示已经展示过设置向导了,下次进来就不展示啦
 	
 	}
 

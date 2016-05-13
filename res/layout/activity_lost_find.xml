@@ -19,18 +19,43 @@
 	        android:text="安全号码"
 	        />
 	    
-	    <TextView
-	        android:id="@+id/textView2"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_alignParentRight="true"
-	        android:layout_centerVertical="true"
-	        android:layout_marginRight="5dp"
-	        android:text="18687051840"
-	        android:textColor="@color/black"
-	        android:textSize="16sp" />
+	   <TextView
+            android:id="@+id/tv_safe_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
 	    
 	</RelativeLayout>
+	
+	<ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/listview_divider" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            style="@style/ContentStyle"
+            android:text="防盗保护是否开启" />
+
+        <ImageView
+            android:id="@+id/iv_protect"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/lock" />
+    </RelativeLayout>
+	
 	
 	<ImageView
 	     android:layout_width="match_parent"

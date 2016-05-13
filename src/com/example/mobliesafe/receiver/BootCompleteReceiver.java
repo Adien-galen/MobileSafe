@@ -1,4 +1,4 @@
-package receiver;
+package com.example.mobliesafe.receiver;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -22,7 +22,7 @@ public class BootCompleteReceiver extends BroadcastReceiver {
 				// 获取当前手机的sim卡
 				TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
 				
-				String currentSim = tm.getSimSerialNumber();// 拿到当前手机的sim卡
+				String currentSim = tm.getSimSerialNumber()+"11";// 拿到当前手机的sim卡
 				
 				if(currentSim.equals(sim)){
 					System.out.println("手机安全");

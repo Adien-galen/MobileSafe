@@ -7,13 +7,18 @@
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="14" />
-	<uses-permission android:name="android.permission.INTERNET"/>
-	<uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
-	<uses-permission android:name="android.permission.SEND_SMS"/>
-	<uses-permission android:name="android.permission.READ_CONTACTS"/>
-	
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -28,21 +33,32 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
-        <activity android:name=".activity.HomeActivity"></activity>
-        <activity android:name=".activity.SettingActivity"></activity>
-        <activity android:name=".activity.LostFindActivity"></activity>
-        <activity android:name=".activity.Setup1Activity"></activity>
-        <activity android:name=".activity.Setup2Activity"></activity>
-        <activity android:name=".activity.Setup3Activity"></activity>
-        <activity android:name=".activity.Setup4Activity"></activity>
-        
-        <receiver android:name=".receiver.BootCompleteReceiver">
-            <intent-filter >
+        <activity android:name=".activity.HomeActivity" >
+        </activity>
+        <activity android:name=".activity.SettingActivity" >
+        </activity>
+        <activity android:name=".activity.LostFindActivity" >
+        </activity>
+        <activity android:name=".activity.Setup1Activity" >
+        </activity>
+        <activity android:name=".activity.Setup2Activity" >
+        </activity>
+        <activity android:name=".activity.Setup3Activity" >
+        </activity>
+        <activity android:name=".activity.Setup4Activity" >
+        </activity>
+        <activity android:name=".activity.ContactActivity" />
+
+        <receiver android:name=".receiver.BootCompleteReceiver" >
+            <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-        
+        <receiver android:name=".receiver.SmsReceiver" >
+            <intent-filter android:priority="2147483647" >
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
