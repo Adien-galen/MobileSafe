@@ -2,6 +2,7 @@ package com.example.mobliesafe.activity;
 
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -100,6 +101,8 @@ public class SplashActivity extends Activity {
 		rlRoot = (RelativeLayout) findViewById(R.id.rl_root);
 
 		mPref = getSharedPreferences("config", MODE_PRIVATE);
+		
+		copyDB("address.db");// 拷贝归属地查询数据库
 
 		// 判断是否需要自动更新
 		boolean autoUpdate = mPref.getBoolean("auto_update", true);
@@ -115,6 +118,7 @@ public class SplashActivity extends Activity {
 		anim.setDuration(2000);
 		rlRoot.startAnimation(anim);
 	}
+
 
 	/**
 	 * 获取版本名称
@@ -342,6 +346,48 @@ public class SplashActivity extends Activity {
 		Intent intent = new Intent(this, HomeActivity.class);
 		startActivity(intent);
 		finish();
+	}
+	
+	/*
+	 * 拷贝数据库
+	 * 
+	 * @param dbName
+	 * */
+	private void copyDB(String dbName) {
+		// File filesDir = getFilesDir();
+		// System.out.println("路径:" + filesDir.getAbsolutePath());
+		File destFile = new File(getFilesDir(), dbName);// 要拷贝的目标地址
+
+		if (destFile.exists()) {
+			System.out.println("数据库" + dbName + "已存在!");
+			return;
+		}
+
+		FileOutputStream out = null;
+		InputStream in = null;
+
+		try {
+			in = getAssets().open(dbName);
+//			System.out.println(in);
+			out = new FileOutputStream(destFile);
+
+			int len = 0;
+			byte[] buffer = new byte[1024];
+
+			while ((len = in.read(buffer)) >0) {
+				out.write(buffer, 0, len);
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				in.close();
+				out.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 }

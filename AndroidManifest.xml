@@ -18,6 +18,8 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
 
     <application
         android:allowBackup="true"
@@ -33,21 +35,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.HomeActivity" >
-        </activity>
-        <activity android:name=".activity.SettingActivity" >
-        </activity>
-        <activity android:name=".activity.LostFindActivity" >
-        </activity>
-        <activity android:name=".activity.Setup1Activity" >
-        </activity>
-        <activity android:name=".activity.Setup2Activity" >
-        </activity>
-        <activity android:name=".activity.Setup3Activity" >
-        </activity>
-        <activity android:name=".activity.Setup4Activity" >
-        </activity>
+        <activity android:name=".activity.HomeActivity" />
+        <activity android:name=".activity.SettingActivity" />
+        <activity android:name=".activity.LostFindActivity" />
+        <activity android:name=".activity.Setup1Activity" />
+        <activity android:name=".activity.Setup2Activity" />
+        <activity android:name=".activity.Setup3Activity" />
+        <activity android:name=".activity.Setup4Activity" />
         <activity android:name=".activity.ContactActivity" />
+        <activity android:name=".activity.AToolsActivity" />
+        <activity android:name=".activity.AddressActivity" />
+        <activity android:name=".activity.DragViewActivity" />
 
         <receiver android:name=".receiver.BootCompleteReceiver" >
             <intent-filter>
@@ -59,6 +57,10 @@
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
         </receiver>
+        
+        <service android:name=".service.LocationService"></service>
+        <service android:name=".service.AddressService"></service>
+        
     </application>
 
 </manifest>
